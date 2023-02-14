@@ -9,7 +9,7 @@ class SearchResults extends React.Component{
     constructor(props) {
       super(props)
     
-      console.log("Props in Search "+props);
+      console.log("Props in Search "+props.items);
     }
 
     render(){

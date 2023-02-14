@@ -9,7 +9,7 @@ class TrackList extends React.Component{
     constructor(props) {
       super(props)
     
-      console.log("Props is "+props);
+      console.log("Props in Tracklist is "+props.items);
       
     }
 
@@ -21,7 +21,7 @@ class TrackList extends React.Component{
     render(){
         return (
             <div className="TrackList">
-                {this.props.tracks.map(track => {
+                {this.props.tracks ? this.props.tracks.map(track => {
                     return(
                         <Track
                             track={track}
@@ -31,7 +31,7 @@ class TrackList extends React.Component{
                             onRemove={this.props.onRemove}
                         />
                     );
-                })}
+                }): 'No tracks to show for now'}
             </div>
         );
     }

@@ -18,13 +18,21 @@ class App extends React.Component{
        playlistTracks: []
     };
 
+    this.search=this.search.bind(this);
+    this.addTrack=this.addTrack.bind(this);
+    this.removeTrack=this.removeTrack.bind(this);
+    this.updatePlaylistName=this.updatePlaylistName.bind(this);
+    this.savePlaylist=this.savePlaylist.bind(this);
+    this.removeTrackSearch=this.removeTrackSearch.bind(this);
+    this.doThese=this.doThese.bind(this);
+
   }
 
-  search(term){
-    Spotify.search(term).then(SearchResults => {
-      console.log("This is searchresult "+SearchResults);
+  async search(term){
+    await Spotify.search(term).then(SearchResults => {
       this.setState({SearchResults: SearchResults})
     });
+    console.log("Logging ...... "+this.state.SearchResults);
   }
 
   addTrack(track){
@@ -83,7 +91,7 @@ class App extends React.Component{
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.SearchResults} onAdd={this.doThese}/>
-            {/* <Playlist playlistTracks={this.state.playlistTracks} onNameChange={this.updatePlaylistName} onRemove={this.removeTrack}  onSave={this.savePlaylist} /> */}
+            <Playlist playlistTracks={this.state.playlistTracks} onNameChange={this.updatePlaylistName} onRemove={this.removeTrack}  onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
